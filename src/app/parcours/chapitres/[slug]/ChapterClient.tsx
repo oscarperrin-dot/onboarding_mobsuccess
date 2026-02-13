@@ -142,7 +142,7 @@ export default function ChapterClient({
                 );
               }
             }}
-            className="w-full rounded-full bg-[color:var(--ink-700)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5 hover:brightness-90 sm:w-auto"
+            className="w-full rounded-full bg-[color:var(--accent-3)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5 hover:brightness-95 sm:w-auto"
           >
             Terminer
           </button>

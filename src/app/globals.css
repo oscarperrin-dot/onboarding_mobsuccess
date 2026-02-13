@@ -14,6 +14,8 @@
   --surface-2: rgb(255 255 255 / 0.8);
   --elevated: #ffffff;
   --elevated-hover: #ffffff;
+  --progress-track: #ffffff;
+  --back-btn-bg: #ffffff;
   --line: rgb(0 0 0 / 0.1);
   --overlay: rgb(0 0 0 / 0.4);
   --page-gradient: radial-gradient(circle at top, #fff5e6 0%, #f4f1ec 55%, #e8e2d8 100%);
@@ -41,6 +43,8 @@
     --surface-2: rgb(20 25 34 / 0.88);
     --elevated: #1b2230;
     --elevated-hover: #232c3d;
+    --progress-track: #ffffff;
+    --back-btn-bg: #f4efe7;
     --line: rgb(255 255 255 / 0.12);
     --overlay: rgb(0 0 0 / 0.62);
     --page-gradient: radial-gradient(circle at top, #1d2736 0%, #0b0d10 58%, #07090d 100%);

@@ -96,7 +96,7 @@ export default function ConseilsPage() {
           <div className="mt-8 flex justify-center">
             <a
               href="/parcours"
-              className="flex items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--elevated)] px-4 py-3 text-[color:var(--ink-700)] transition hover:-translate-y-0.5"
+              className="flex items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--back-btn-bg)] px-4 py-3 text-[color:var(--ink-700)] transition hover:-translate-y-0.5 hover:brightness-95"
               aria-label="Retour au parcours de compréhension"
               title="Retour au parcours de compréhension"
             >

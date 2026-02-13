@@ -132,7 +132,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
         <div className="mx-auto flex w-full max-w-5xl items-center justify-between">
           <Link
             href="/parcours"
-            className="-ml-0 flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--elevated)] shadow-[0_12px_30px_rgba(25,20,14,0.15)] transition hover:-translate-y-0.5 sm:-ml-8 sm:h-12 sm:w-12 lg:-ml-16"
+            className="-ml-0 flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--back-btn-bg)] shadow-[0_12px_30px_rgba(25,20,14,0.2)] transition hover:-translate-y-0.5 hover:brightness-95 sm:-ml-8 sm:h-12 sm:w-12 lg:-ml-16"
             aria-label="Retour au parcours"
             title="Retour au parcours"
           >
@@ -145,7 +145,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           {nextChapterSlug ? (
             <Link
               href={`/parcours/chapitres/${nextChapterSlug}`}
-              className="mr-0 flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--elevated)] text-lg font-semibold text-[color:var(--ink-700)] shadow-[0_12px_30px_rgba(25,20,14,0.15)] transition hover:-translate-y-0.5 sm:-mr-8 sm:h-12 sm:w-12 lg:-mr-16"
+              className="mr-0 flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--accent-3)] text-lg font-semibold text-white shadow-[0_12px_30px_rgba(17,92,132,0.45)] transition hover:-translate-y-0.5 hover:brightness-110 sm:-mr-8 sm:h-12 sm:w-12 lg:-mr-16"
               aria-label="Chapitre suivant"
               title="Chapitre suivant"
             >
@@ -154,7 +154,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           ) : (
             <Link
               href="/parcours"
-              className="mr-0 flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--elevated)] text-lg font-semibold text-[color:var(--ink-700)] shadow-[0_12px_30px_rgba(25,20,14,0.15)] transition hover:-translate-y-0.5 sm:-mr-8 sm:h-12 sm:w-12 lg:-mr-16"
+              className="mr-0 flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--back-btn-bg)] text-lg font-semibold text-[color:var(--ink-700)] shadow-[0_12px_30px_rgba(25,20,14,0.2)] transition hover:-translate-y-0.5 hover:brightness-95 sm:-mr-8 sm:h-12 sm:w-12 lg:-mr-16"
               aria-label="Fin du parcours"
               title="Fin du parcours"
             >

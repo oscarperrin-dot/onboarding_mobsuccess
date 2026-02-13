@@ -68,7 +68,7 @@ export default function HomeProgressCard() {
         <span>Barre de parcours</span>
         <span>{snapshot.percent}%</span>
       </div>
-      <div className="mt-3 h-3 w-full overflow-hidden rounded-full bg-[color:var(--surface-2)]">
+      <div className="mt-3 h-3 w-full overflow-hidden rounded-full bg-[color:var(--progress-track)]">
         <div
           className="h-full rounded-full bg-gradient-to-r from-[color:var(--accent-3)] via-[color:var(--accent-2)] to-[color:var(--accent-1)] transition-all"
           style={{ width: `${snapshot.percent}%` }}
