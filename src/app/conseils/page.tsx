@@ -61,17 +61,17 @@ export default function ConseilsPage() {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_#fff5e6_0%,_#f4f1ec_55%,_#e8e2d8_100%)] px-6 py-10 text-[var(--ink-700)]">
+    <div className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_#fff5e6_0%,_#f4f1ec_55%,_#e8e2d8_100%)] px-4 py-6 text-[var(--ink-700)] sm:px-6 sm:py-10">
       <div className="pointer-events-none absolute -left-24 top-10 h-60 w-60 rounded-full bg-[color:var(--accent-2)] opacity-35 blur-3xl" />
       <div className="pointer-events-none absolute -right-32 top-24 h-72 w-72 rounded-full bg-[color:var(--accent-3)] opacity-30 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 left-10 h-72 w-72 rounded-full bg-[color:var(--accent-1)] opacity-20 blur-3xl" />
 
       <main className="relative mx-auto flex w-full max-w-4xl flex-col gap-8">
-        <header className="rounded-[32px] border border-black/10 bg-white/70 p-10 shadow-[0_25px_80px_rgba(25,20,14,0.12)] backdrop-blur">
+        <header className="rounded-[32px] border border-black/10 bg-white/70 p-6 shadow-[0_25px_80px_rgba(25,20,14,0.12)] backdrop-blur sm:p-10">
           <div className="text-xs uppercase tracking-[0.3em] text-[color:var(--ink-500)]">
             Conseils
           </div>
-          <h1 className="mt-4 text-balance font-[var(--font-display)] text-4xl text-[color:var(--ink-700)]">
+          <h1 className="mt-4 text-balance font-[var(--font-display)] text-3xl text-[color:var(--ink-700)] sm:text-4xl">
             Les bons conseils
           </h1>
           <p className="mt-3 text-[color:var(--ink-500)]">
@@ -79,7 +79,7 @@ export default function ConseilsPage() {
           </p>
         </header>
 
-        <section className="rounded-[28px] border border-black/10 bg-white/80 p-8 shadow-[0_20px_60px_rgba(42,32,24,0.12)]">
+        <section className="rounded-[28px] border border-black/10 bg-white/80 p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-8">
           <div className="grid gap-3 text-sm text-[color:var(--ink-700)]">
             {conseils.map((conseil) => (
               <div

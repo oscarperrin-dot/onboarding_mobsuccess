@@ -21,9 +21,11 @@ export default function HomeProgress() {
   });
 
   useEffect(() => {
+    let completedCount = 0;
     const xp = chapters.reduce((acc, chapter) => {
       const raw = window.sessionStorage.getItem(`chapter:${chapter.slug}:score`);
       if (!raw) return acc;
+      completedCount += 1;
       try {
         const parsed = JSON.parse(raw) as { xp?: number };
         return acc + (parsed.xp ?? 0);
@@ -32,7 +34,10 @@ export default function HomeProgress() {
       }
     }, 0);
 
-    const percent = totalXp > 0 ? Math.min(100, Math.round((xp / totalXp) * 100)) : 0;
+    const percent =
+      chapters.length > 0
+        ? Math.min(100, Math.round((completedCount / chapters.length) * 100))
+        : 0;
     setProgress({ percent, xp, totalXp });
   }, [totalXp]);
 

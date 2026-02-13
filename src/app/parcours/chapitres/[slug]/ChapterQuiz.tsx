@@ -7,6 +7,7 @@ type ChapterQuizProps = {
   answers: Record<number, number | undefined>;
   onAnswer: (questionIndex: number, optionIndex: number) => void;
   showResults: boolean;
+  retryQuestionIndexes: number[];
 };
 
 export default function ChapterQuiz({
@@ -14,6 +15,7 @@ export default function ChapterQuiz({
   answers,
   onAnswer,
   showResults,
+  retryQuestionIndexes,
 }: ChapterQuizProps) {
   return (
     <div className="mt-6 grid gap-4">
@@ -33,10 +35,12 @@ export default function ChapterQuiz({
             <div className="mt-4 grid gap-2 text-sm text-[color:var(--ink-500)]">
               {quiz.options.map((option, optionIndex) => {
                 const isSelected = selected === optionIndex;
-                const disabled = selected !== undefined;
+                const canRetryThisQuestion =
+                  retryQuestionIndexes.length === 0 ||
+                  retryQuestionIndexes.includes(index);
+                const disabled = selected !== undefined || !canRetryThisQuestion;
                 const isCorrect = optionIndex === quiz.correctIndex;
                 const showCorrect = showResults && isSelected && isCorrect;
-                const showIncorrect = false;
                 return (
                   <button
                     key={option}

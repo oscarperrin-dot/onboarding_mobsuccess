@@ -43,7 +43,10 @@ export default function HomeProgressCard() {
     });
     const completedCount = chapterScores.filter(Boolean).length;
     const xp = chapterScores.reduce((acc, score) => acc + (score?.xp ?? 0), 0);
-    const percent = totalXp > 0 ? Math.min(100, Math.round((xp / totalXp) * 100)) : 0;
+    const percent =
+      chapters.length > 0
+        ? Math.min(100, Math.round((completedCount / chapters.length) * 100))
+        : 0;
     const current =
       chapters.find((chapter) => !window.sessionStorage.getItem(`chapter:${chapter.slug}:score`)) ??
       chapters[chapters.length - 1];

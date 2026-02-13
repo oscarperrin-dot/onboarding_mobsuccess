@@ -1,19 +1,28 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import type { Chapter } from "../../chapters";
 import { XP_PER_CORRECT } from "../../chapters";
 import ChapterQuiz from "./ChapterQuiz";
 
 type ChapterClientProps = {
   chapter: Chapter;
+  nextChapterSlug: string | null;
 };
 
-export default function ChapterClient({ chapter }: ChapterClientProps) {
+export default function ChapterClient({
+  chapter,
+  nextChapterSlug,
+}: ChapterClientProps) {
+  const router = useRouter();
   const [answers, setAnswers] = useState<Record<number, number | undefined>>({});
   const [completed, setCompleted] = useState(false);
   const [reveal, setReveal] = useState(false);
+  const [retryQuestionIndexes, setRetryQuestionIndexes] = useState<number[]>([]);
+  const [feedback, setFeedback] = useState<string>("");
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const score = useMemo(() => {
     const total = chapter.quiz.length;
@@ -23,25 +32,20 @@ export default function ChapterClient({ chapter }: ChapterClientProps) {
     return { correct, total };
   }, [answers, chapter.quiz]);
 
-  const allAnswered = useMemo(
-    () => Object.keys(answers).length === chapter.quiz.length,
-    [answers, chapter.quiz.length]
-  );
-  const allCorrect = useMemo(
-    () => allAnswered && score.correct === score.total,
-    [allAnswered, score]
-  );
-
   return (
     <>
-      <section className="rounded-[28px] border border-black/10 bg-white/80 p-8 shadow-[0_20px_60px_rgba(42,32,24,0.12)]">
+      <section className="rounded-[28px] border border-black/10 bg-white/80 p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <h2 className="font-[var(--font-display)] text-3xl text-[color:var(--ink-700)]">
+            <h2 className="font-[var(--font-display)] text-2xl text-[color:var(--ink-700)] sm:text-3xl">
               Quiz de validation
             </h2>
             <p className="mt-2 text-[color:var(--ink-500)]">
-            Réponds aux questions, puis termine le chapitre pour voir ton score.
+              Réponds aux questions, puis termine le chapitre.
+            </p>
+            <p className="mt-2 text-sm text-[color:var(--ink-500)]">
+              Cours express : lis les sections &quot;Ce que tu dois comprendre&quot; et
+              &quot;Ce que ça change pour toi&quot; avant de répondre.
             </p>
           </div>
           <span className="rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[color:var(--ink-500)]">
@@ -55,10 +59,11 @@ export default function ChapterClient({ chapter }: ChapterClientProps) {
             setAnswers((prev) => ({ ...prev, [questionIndex]: optionIndex }))
           }
           showResults={reveal}
+          retryQuestionIndexes={retryQuestionIndexes}
         />
       </section>
 
-      <section className="flex flex-wrap items-center justify-between gap-4 rounded-[28px] border border-black/10 bg-white/80 p-6 shadow-[0_20px_60px_rgba(42,32,24,0.12)]">
+      <section className="flex flex-wrap items-center justify-between gap-4 rounded-[28px] border border-black/10 bg-white/80 p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-6">
         <div>
           <div className="text-xs uppercase tracking-[0.3em] text-[color:var(--ink-500)]">
             Fin du chapitre
@@ -68,35 +73,45 @@ export default function ChapterClient({ chapter }: ChapterClientProps) {
               ? `Résultat : ${score.correct}/${score.total} réponses correctes`
               : "Prêt à passer au chapitre suivant ?"}
           </div>
+          {feedback ? (
+            <div className="mt-2 text-sm text-[color:var(--ink-500)]">{feedback}</div>
+          ) : null}
         </div>
         <div className="flex flex-wrap gap-3">
           <button
             type="button"
             onClick={() => {
-              setAnswers({});
-              setCompleted(false);
-            }}
-            className="flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ink-700)] transition hover:-translate-y-0.5"
-          >
-            <img
-              src="https://st4.depositphotos.com/34984980/37844/v/450/depositphotos_378440594-stock-illustration-refresh-icon-isolated-white-background.jpg"
-              alt="Recommencer"
-              className="h-4 w-4 rounded-full"
-            />
-            Recommencer
-          </button>
-          <button
-            type="button"
-            onClick={() => {
+              const wrongIndexes = chapter.quiz
+                .map((quiz, index) => ({ quiz, index }))
+                .filter(({ quiz, index }) => answers[index] !== quiz.correctIndex)
+                .map(({ index }) => index);
+
               setCompleted(true);
               setReveal(true);
-              if (allCorrect && typeof window !== "undefined") {
-                window.sessionStorage.setItem(
-                  `chapter:${chapter.slug}:perfect`,
-                  "true"
+              if (wrongIndexes.length > 0) {
+                setRetryQuestionIndexes(wrongIndexes);
+                setAnswers((prev) => {
+                  const next = { ...prev };
+                  wrongIndexes.forEach((index) => {
+                    delete next[index];
+                  });
+                  return next;
+                });
+                setFeedback(
+                  `${wrongIndexes.length} question(s) à corriger. Réponds à nouveau uniquement aux erreurs.`
                 );
+                if (typeof window !== "undefined") {
+                  window.sessionStorage.removeItem(`chapter:${chapter.slug}:perfect`);
+                  window.sessionStorage.removeItem(`chapter:${chapter.slug}:score`);
+                }
+                return;
               }
+
+              setRetryQuestionIndexes([]);
+              setFeedback("Chapitre validé. Passage au chapitre suivant.");
+              setShowSuccessModal(true);
               if (typeof window !== "undefined") {
+                window.sessionStorage.setItem(`chapter:${chapter.slug}:perfect`, "true");
                 const payload = {
                   correct: score.correct,
                   total: score.total,
@@ -108,12 +123,53 @@ export default function ChapterClient({ chapter }: ChapterClientProps) {
                 );
               }
             }}
-            className="rounded-full bg-[color:var(--ink-700)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5 hover:bg-black"
+            className="w-full rounded-full bg-[color:var(--ink-700)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5 hover:bg-black sm:w-auto"
           >
             Terminer
           </button>
         </div>
       </section>
+
+      {showSuccessModal ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
+          <div className="w-full max-w-md rounded-[28px] border border-black/10 bg-white p-6 shadow-[0_30px_90px_rgba(25,20,14,0.2)] sm:p-8">
+            <h3 className="font-[var(--font-display)] text-2xl text-[color:var(--ink-700)]">
+              Chapitre validé
+            </h3>
+            <p className="mt-3 text-sm text-[color:var(--ink-500)]">
+              Toutes les réponses sont correctes. Tu peux passer à l&apos;étape suivante.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {nextChapterSlug ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowSuccessModal(false);
+                    router.push(`/parcours/chapitres/${nextChapterSlug}`);
+                  }}
+                  className="rounded-full bg-[color:var(--accent-3)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5"
+                >
+                  Aller au chapitre suivant
+                </button>
+              ) : (
+                <Link
+                  href="/parcours"
+                  className="rounded-full bg-[color:var(--accent-3)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5"
+                >
+                  Retour au parcours
+                </Link>
+              )}
+              <button
+                type="button"
+                onClick={() => setShowSuccessModal(false)}
+                className="rounded-full border border-black/10 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ink-700)] transition hover:-translate-y-0.5"
+              >
+                Fermer
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }
