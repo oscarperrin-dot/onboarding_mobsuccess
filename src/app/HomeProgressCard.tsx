@@ -68,7 +68,7 @@ export default function HomeProgressCard() {
         <span>Barre de parcours</span>
         <span>{snapshot.percent}%</span>
       </div>
-      <div className="mt-3 h-3 w-full overflow-hidden rounded-full bg-white/80">
+      <div className="mt-3 h-3 w-full overflow-hidden rounded-full bg-[color:var(--surface-2)]">
         <div
           className="h-full rounded-full bg-gradient-to-r from-[color:var(--accent-3)] via-[color:var(--accent-2)] to-[color:var(--accent-1)] transition-all"
           style={{ width: `${snapshot.percent}%` }}
@@ -78,7 +78,7 @@ export default function HomeProgressCard() {
         {snapshot.xp} XP / {snapshot.totalXp} XP
       </div>
 
-      <div className="mt-6 grid gap-4 rounded-2xl bg-white/80 p-4 text-sm">
+      <div className="mt-6 grid gap-4 rounded-2xl bg-[color:var(--surface-2)] p-4 text-sm">
         <div className="flex items-center justify-between">
           <span className="uppercase tracking-[0.2em] text-[color:var(--ink-500)]">
             Chapitre actuel

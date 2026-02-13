@@ -10,6 +10,13 @@
   --accent-3: #3e8cb6;
   --card: #fff7ef;
   --card-strong: #f2e6da;
+  --surface-1: rgb(255 255 255 / 0.7);
+  --surface-2: rgb(255 255 255 / 0.8);
+  --elevated: #ffffff;
+  --elevated-hover: #ffffff;
+  --line: rgb(0 0 0 / 0.1);
+  --overlay: rgb(0 0 0 / 0.4);
+  --page-gradient: radial-gradient(circle at top, #fff5e6 0%, #f4f1ec 55%, #e8e2d8 100%);
 }
 
 @theme inline {
@@ -30,6 +37,13 @@
     --accent-3: #58a7d4;
     --card: #141922;
     --card-strong: #1c2532;
+    --surface-1: rgb(20 25 34 / 0.76);
+    --surface-2: rgb(20 25 34 / 0.88);
+    --elevated: #1b2230;
+    --elevated-hover: #232c3d;
+    --line: rgb(255 255 255 / 0.12);
+    --overlay: rgb(0 0 0 / 0.62);
+    --page-gradient: radial-gradient(circle at top, #1d2736 0%, #0b0d10 58%, #07090d 100%);
   }
 }
 

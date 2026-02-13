@@ -6,7 +6,7 @@ import CompletionOverlay from "./CompletionOverlay";
 
 export default function ParcoursPage() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_#fff5e6_0%,_#f4f1ec_55%,_#e8e2d8_100%)] px-4 py-6 text-[var(--ink-700)] sm:px-6 sm:py-10">
+    <div className="relative min-h-screen overflow-hidden bg-[image:var(--page-gradient)] px-4 py-6 text-[var(--ink-700)] sm:px-6 sm:py-10">
       <div className="pointer-events-none absolute -left-24 top-10 h-60 w-60 rounded-full bg-[color:var(--accent-2)] opacity-35 blur-3xl" />
       <div className="pointer-events-none absolute -right-32 top-24 h-72 w-72 rounded-full bg-[color:var(--accent-3)] opacity-30 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 left-10 h-72 w-72 rounded-full bg-[color:var(--accent-1)] opacity-20 blur-3xl" />
@@ -15,7 +15,7 @@ export default function ParcoursPage() {
         <div className="mx-auto flex w-full max-w-6xl">
           <Link
             href="/"
-            className="-ml-0 flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white shadow-[0_12px_30px_rgba(25,20,14,0.15)] transition hover:-translate-y-0.5 sm:-ml-8 sm:h-12 sm:w-12 lg:-ml-16"
+            className="-ml-0 flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--elevated)] shadow-[0_12px_30px_rgba(25,20,14,0.15)] transition hover:-translate-y-0.5 sm:-ml-8 sm:h-12 sm:w-12 lg:-ml-16"
             aria-label="Retour au menu"
             title="Retour au menu"
           >
@@ -29,9 +29,9 @@ export default function ParcoursPage() {
       </div>
 
       <main className="relative mx-auto flex w-full max-w-6xl flex-col gap-8 sm:gap-12">
-        <header className="rounded-[32px] border border-black/10 bg-white/70 p-6 shadow-[0_25px_80px_rgba(25,20,14,0.12)] backdrop-blur sm:p-10">
+        <header className="rounded-[32px] border border-[color:var(--line)] bg-[color:var(--surface-1)] p-6 shadow-[0_25px_80px_rgba(25,20,14,0.12)] backdrop-blur sm:p-10">
           <div className="flex flex-wrap items-center gap-3 text-sm uppercase tracking-[0.2em] text-[color:var(--ink-500)]">
-            <span className="flex items-center gap-2 rounded-full border border-black/10 px-3 py-1">
+            <span className="flex items-center gap-2 rounded-full border border-[color:var(--line)] px-3 py-1">
               <img
                 src="https://static.wixstatic.com/media/f86955_6adbcb99dcf142aab73c37855f4408d3~mv2.webp/v1/fill/w_256,h_256,al_c,q_80,enc_avif,quality_auto/logo-groupe-mobsucess.webp"
                 alt="Logo MobSuccess"
@@ -39,7 +39,7 @@ export default function ParcoursPage() {
               />
               MobSuccess
             </span>
-            <span className="rounded-full border border-black/10 px-3 py-1">Parcours</span>
+            <span className="rounded-full border border-[color:var(--line)] px-3 py-1">Parcours</span>
           </div>
           <h1 className="mt-6 text-balance font-[var(--font-display)] text-3xl leading-tight text-[color:var(--ink-700)] sm:text-4xl md:text-5xl">
             Parcours de compréhension
@@ -51,12 +51,12 @@ export default function ParcoursPage() {
         </header>
 
         <section className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="rounded-[28px] border border-black/10 bg-white/80 p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-8">
+          <div className="rounded-[28px] border border-[color:var(--line)] bg-[color:var(--surface-2)] p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-8">
             <div className="flex items-center justify-between gap-4">
               <h2 className="font-[var(--font-display)] text-3xl text-[color:var(--ink-700)]">
                 Chapitres
               </h2>
-              <span className="rounded-full border border-black/10 px-3 py-1 text-xs uppercase tracking-[0.3em] text-[color:var(--ink-500)]">
+              <span className="rounded-full border border-[color:var(--line)] px-3 py-1 text-xs uppercase tracking-[0.3em] text-[color:var(--ink-500)]">
                 {chapters.length} étapes
               </span>
             </div>
@@ -64,7 +64,7 @@ export default function ParcoursPage() {
           </div>
 
           <div className="flex flex-col gap-6">
-            <div className="overflow-hidden rounded-[24px] border border-black/10 bg-[color:var(--card)] shadow-[0_16px_40px_rgba(42,32,24,0.12)]">
+            <div className="overflow-hidden rounded-[24px] border border-[color:var(--line)] bg-[color:var(--card)] shadow-[0_16px_40px_rgba(42,32,24,0.12)]">
               <img
                 src="https://lh3.googleusercontent.com/p/AF1QipMwPceTgd9ZGURRuIEUphM-I3S-Gt2-l_aDDQzL=s1360-w1360-h1020-rw"
                 alt="Ambiance MobSuccess"
@@ -73,14 +73,14 @@ export default function ParcoursPage() {
                 className="h-full w-full object-cover"
               />
             </div>
-            <div className="overflow-hidden rounded-[24px] border border-black/10 bg-[color:var(--card)] shadow-[0_16px_40px_rgba(42,32,24,0.12)]">
+            <div className="overflow-hidden rounded-[24px] border border-[color:var(--line)] bg-[color:var(--card)] shadow-[0_16px_40px_rgba(42,32,24,0.12)]">
               <img
                 src="https://lh3.googleusercontent.com/p/AF1QipPGve8ntch4E3Ix0uCtTkTu1F7e8L8aAJ4GgT-1=s1360-w1360-h1020-rw"
                 alt="Entrée des bureaux de MobSuccess"
                 className="h-full w-full object-cover"
               />
             </div>
-            <div className="rounded-[20px] border border-black/10 bg-white/80 px-5 py-4 text-sm text-[color:var(--ink-500)]">
+            <div className="rounded-[20px] border border-[color:var(--line)] bg-[color:var(--surface-2)] px-5 py-4 text-sm text-[color:var(--ink-500)]">
               <span className="font-semibold text-[color:var(--ink-700)]">
                 Entrée des bureaux de MobSuccess
               </span>
@@ -89,13 +89,13 @@ export default function ParcoursPage() {
                 — sur l&apos;image, les noms des trois groupes de travail.
               </span>
             </div>
-            <div className="rounded-[20px] border border-black/10 bg-white/80 px-5 py-4 text-sm text-[color:var(--ink-500)]">
+            <div className="rounded-[20px] border border-[color:var(--line)] bg-[color:var(--surface-2)] px-5 py-4 text-sm text-[color:var(--ink-500)]">
               <HomeProgress />
             </div>
           </div>
         </section>
 
-        <section className="rounded-[28px] border border-black/10 bg-white/80 p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-8">
+        <section className="rounded-[28px] border border-[color:var(--line)] bg-[color:var(--surface-2)] p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-8">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <h2 className="font-[var(--font-display)] text-3xl text-[color:var(--ink-700)]">
@@ -109,13 +109,13 @@ export default function ParcoursPage() {
               href="https://www.google.com/search?q=google+maps+mobsuccess"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-black/10 bg-[color:var(--card)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ink-700)]"
+              className="rounded-full border border-[color:var(--line)] bg-[color:var(--card)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ink-700)]"
             >
               Google Maps MobSuccess
             </a>
           </div>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl border border-black/10 bg-[color:var(--card)] p-5">
+            <div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--card)] p-5">
               <div className="text-xs uppercase tracking-[0.3em] text-[color:var(--ink-500)]">
                 Mémo RH
               </div>
@@ -128,7 +128,7 @@ export default function ParcoursPage() {
                 rh@mobsuccess.com · rh@storysuccess.fr
               </p>
             </div>
-            <div className="rounded-2xl border border-black/10 bg-[color:var(--card)] p-5">
+            <div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--card)] p-5">
               <div className="text-xs uppercase tracking-[0.3em] text-[color:var(--ink-500)]">
                 Toute l&apos;équipe
               </div>
@@ -147,7 +147,7 @@ export default function ParcoursPage() {
                 Voir l&apos;organigramme
               </a>
             </div>
-            <div className="rounded-2xl border border-black/10 bg-[color:var(--card)] p-5">
+            <div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--card)] p-5">
               <div className="text-xs uppercase tracking-[0.3em] text-[color:var(--ink-500)]">
                 Conseils
               </div>
@@ -159,7 +159,7 @@ export default function ParcoursPage() {
               </p>
               <Link
                 href="/conseils"
-                className="mt-4 inline-flex items-center rounded-full border border-black/10 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ink-700)] transition hover:-translate-y-0.5"
+                className="mt-4 inline-flex items-center rounded-full border border-[color:var(--line)] bg-[color:var(--elevated)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ink-700)] transition hover:-translate-y-0.5"
               >
                 Voir tous les conseils
               </Link>

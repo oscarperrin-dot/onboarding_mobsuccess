@@ -77,9 +77,9 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
 
   if (!chapter) {
     return (
-      <div className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_#fff5e6_0%,_#f4f1ec_55%,_#e8e2d8_100%)] px-4 py-6 text-[var(--ink-700)] sm:px-6 sm:py-10">
+      <div className="relative min-h-screen overflow-hidden bg-[image:var(--page-gradient)] px-4 py-6 text-[var(--ink-700)] sm:px-6 sm:py-10">
         <main className="relative mx-auto flex w-full max-w-4xl flex-col gap-8">
-          <header className="rounded-[32px] border border-black/10 bg-white/70 p-6 shadow-[0_25px_80px_rgba(25,20,14,0.12)] backdrop-blur sm:p-10">
+          <header className="rounded-[32px] border border-[color:var(--line)] bg-[color:var(--surface-1)] p-6 shadow-[0_25px_80px_rgba(25,20,14,0.12)] backdrop-blur sm:p-10">
             <div className="text-sm uppercase tracking-[0.2em] text-[color:var(--ink-500)]">
               Chapitre introuvable
             </div>
@@ -100,7 +100,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
             </div>
           </header>
 
-          <section className="rounded-[28px] border border-black/10 bg-white/80 p-8 shadow-[0_20px_60px_rgba(42,32,24,0.12)]">
+          <section className="rounded-[28px] border border-[color:var(--line)] bg-[color:var(--surface-2)] p-8 shadow-[0_20px_60px_rgba(42,32,24,0.12)]">
             <h2 className="font-[var(--font-display)] text-2xl text-[color:var(--ink-700)]">
               Chapitres disponibles
             </h2>
@@ -109,7 +109,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                 <Link
                   key={item.slug}
                   href={`/parcours/chapitres/${item.slug}`}
-                  className="rounded-2xl border border-black/10 bg-[color:var(--card)] px-5 py-4 text-sm font-semibold text-[color:var(--ink-700)] transition hover:bg-white"
+                  className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--card)] px-5 py-4 text-sm font-semibold text-[color:var(--ink-700)] transition hover:bg-[color:var(--elevated-hover)]"
                 >
                   {item.title}
                 </Link>
@@ -124,7 +124,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   const summaryPoints = [...chapter.highlights, ...chapter.onboardingImpact].slice(0, 6);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_#fff5e6_0%,_#f4f1ec_55%,_#e8e2d8_100%)] px-4 py-6 text-[var(--ink-700)] sm:px-6 sm:py-10">
+    <div className="relative min-h-screen overflow-hidden bg-[image:var(--page-gradient)] px-4 py-6 text-[var(--ink-700)] sm:px-6 sm:py-10">
       <div className="pointer-events-none absolute -left-24 top-10 h-60 w-60 rounded-full bg-[color:var(--accent-2)] opacity-35 blur-3xl" />
       <div className="pointer-events-none absolute -right-32 top-24 h-72 w-72 rounded-full bg-[color:var(--accent-3)] opacity-30 blur-3xl" />
       <div className="pointer-events-none absolute bottom-0 left-10 h-72 w-72 rounded-full bg-[color:var(--accent-1)] opacity-20 blur-3xl" />
@@ -132,7 +132,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
         <div className="mx-auto flex w-full max-w-5xl items-center justify-between">
           <Link
             href="/parcours"
-            className="-ml-0 flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white shadow-[0_12px_30px_rgba(25,20,14,0.15)] transition hover:-translate-y-0.5 sm:-ml-8 sm:h-12 sm:w-12 lg:-ml-16"
+            className="-ml-0 flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--elevated)] shadow-[0_12px_30px_rgba(25,20,14,0.15)] transition hover:-translate-y-0.5 sm:-ml-8 sm:h-12 sm:w-12 lg:-ml-16"
             aria-label="Retour au parcours"
             title="Retour au parcours"
           >
@@ -145,7 +145,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           {nextChapterSlug ? (
             <Link
               href={`/parcours/chapitres/${nextChapterSlug}`}
-              className="mr-0 flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-lg font-semibold text-[color:var(--ink-700)] shadow-[0_12px_30px_rgba(25,20,14,0.15)] transition hover:-translate-y-0.5 sm:-mr-8 sm:h-12 sm:w-12 lg:-mr-16"
+              className="mr-0 flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--elevated)] text-lg font-semibold text-[color:var(--ink-700)] shadow-[0_12px_30px_rgba(25,20,14,0.15)] transition hover:-translate-y-0.5 sm:-mr-8 sm:h-12 sm:w-12 lg:-mr-16"
               aria-label="Chapitre suivant"
               title="Chapitre suivant"
             >
@@ -154,7 +154,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           ) : (
             <Link
               href="/parcours"
-              className="mr-0 flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-lg font-semibold text-[color:var(--ink-700)] shadow-[0_12px_30px_rgba(25,20,14,0.15)] transition hover:-translate-y-0.5 sm:-mr-8 sm:h-12 sm:w-12 lg:-mr-16"
+              className="mr-0 flex h-10 w-10 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--elevated)] text-lg font-semibold text-[color:var(--ink-700)] shadow-[0_12px_30px_rgba(25,20,14,0.15)] transition hover:-translate-y-0.5 sm:-mr-8 sm:h-12 sm:w-12 lg:-mr-16"
               aria-label="Fin du parcours"
               title="Fin du parcours"
             >
@@ -165,13 +165,13 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
       </div>
 
       <main className="relative mx-auto flex w-full max-w-5xl flex-col gap-8 sm:gap-10">
-        <section className="rounded-[20px] border border-black/10 bg-white/80 p-4 shadow-[0_12px_30px_rgba(25,20,14,0.08)]">
+        <section className="rounded-[20px] border border-[color:var(--line)] bg-[color:var(--surface-2)] p-4 shadow-[0_12px_30px_rgba(25,20,14,0.08)]">
           <HomeProgress />
         </section>
 
-        <header className="rounded-[32px] border border-black/10 bg-white/70 p-6 shadow-[0_25px_80px_rgba(25,20,14,0.12)] backdrop-blur sm:p-10">
+        <header className="rounded-[32px] border border-[color:var(--line)] bg-[color:var(--surface-1)] p-6 shadow-[0_25px_80px_rgba(25,20,14,0.12)] backdrop-blur sm:p-10">
           <div className="flex flex-wrap items-center gap-3 text-sm uppercase tracking-[0.2em] text-[color:var(--ink-500)]">
-            <span className="flex items-center gap-2 rounded-full border border-black/10 px-3 py-1">
+            <span className="flex items-center gap-2 rounded-full border border-[color:var(--line)] px-3 py-1">
               <img
                 src="https://static.wixstatic.com/media/f86955_6adbcb99dcf142aab73c37855f4408d3~mv2.webp/v1/fill/w_256,h_256,al_c,q_80,enc_avif,quality_auto/logo-groupe-mobsucess.webp"
                 alt="Logo MobSuccess"
@@ -179,11 +179,11 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
               />
               MobSuccess
             </span>
-            <span className="rounded-full border border-black/10 px-3 py-1">Chapitre</span>
-            <span className="rounded-full border border-black/10 px-3 py-1">
+            <span className="rounded-full border border-[color:var(--line)] px-3 py-1">Chapitre</span>
+            <span className="rounded-full border border-[color:var(--line)] px-3 py-1">
               {chapterNumber}/{chapters.length}
             </span>
-            <span className="rounded-full border border-black/10 px-3 py-1">{chapter.source}</span>
+            <span className="rounded-full border border-[color:var(--line)] px-3 py-1">{chapter.source}</span>
           </div>
           <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -194,7 +194,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                 {emphasizeImportantTerms(chapter.intro)}
               </p>
             </div>
-            <div className="rounded-2xl border border-black/10 bg-[color:var(--card)] px-5 py-4 text-sm">
+            <div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--card)] px-5 py-4 text-sm">
               <div className="text-xs uppercase tracking-[0.3em] text-[color:var(--ink-500)]">
                 Focus
               </div>
@@ -208,7 +208,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           </div>
         </header>
 
-        <section className="rounded-[28px] border border-black/10 bg-white/80 p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-8">
+        <section className="rounded-[28px] border border-[color:var(--line)] bg-[color:var(--surface-2)] p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-8">
           <h2 className="font-[var(--font-display)] text-3xl text-[color:var(--ink-700)]">
             Ce que tu dois comprendre
           </h2>
@@ -221,7 +221,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
           </div>
         </section>
 
-        <section className="rounded-[28px] border border-black/10 bg-[color:var(--card)] p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-8">
+        <section className="rounded-[28px] border border-[color:var(--line)] bg-[color:var(--card)] p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-8">
           <h2 className="font-[var(--font-display)] text-2xl text-[color:var(--ink-700)]">
             Résumé
           </h2>

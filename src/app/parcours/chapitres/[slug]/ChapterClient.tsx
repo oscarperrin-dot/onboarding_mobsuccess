@@ -53,7 +53,7 @@ export default function ChapterClient({
 
   return (
     <>
-      <section className="rounded-[28px] border border-black/10 bg-white/80 p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-8">
+      <section className="rounded-[28px] border border-[color:var(--line)] bg-[color:var(--surface-2)] p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <h2 className="font-[var(--font-display)] text-2xl text-[color:var(--ink-700)] sm:text-3xl">
@@ -67,7 +67,7 @@ export default function ChapterClient({
               &quot;Ce que ça change pour toi&quot; avant de répondre.
             </p>
           </div>
-          <span className="rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[color:var(--ink-500)]">
+          <span className="rounded-full border border-[color:var(--line)] px-4 py-2 text-xs uppercase tracking-[0.3em] text-[color:var(--ink-500)]">
             {randomizedQuiz.length} questions
           </span>
         </div>
@@ -82,7 +82,7 @@ export default function ChapterClient({
         />
       </section>
 
-      <section className="flex flex-wrap items-center justify-between gap-4 rounded-[28px] border border-black/10 bg-white/80 p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-6">
+      <section className="flex flex-wrap items-center justify-between gap-4 rounded-[28px] border border-[color:var(--line)] bg-[color:var(--surface-2)] p-5 shadow-[0_20px_60px_rgba(42,32,24,0.12)] sm:p-6">
         <div>
           <div className="text-xs uppercase tracking-[0.3em] text-[color:var(--ink-500)]">
             Fin du chapitre
@@ -142,7 +142,7 @@ export default function ChapterClient({
                 );
               }
             }}
-            className="w-full rounded-full bg-[color:var(--ink-700)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5 hover:bg-black sm:w-auto"
+            className="w-full rounded-full bg-[color:var(--ink-700)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5 hover:brightness-90 sm:w-auto"
           >
             Terminer
           </button>
@@ -150,8 +150,8 @@ export default function ChapterClient({
       </section>
 
       {showSuccessModal ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-          <div className="w-full max-w-md rounded-[28px] border border-black/10 bg-white p-6 shadow-[0_30px_90px_rgba(25,20,14,0.2)] sm:p-8">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[color:var(--overlay)] px-4">
+          <div className="w-full max-w-md rounded-[28px] border border-[color:var(--line)] bg-[color:var(--elevated)] p-6 shadow-[0_30px_90px_rgba(25,20,14,0.2)] sm:p-8">
             <h3 className="font-[var(--font-display)] text-2xl text-[color:var(--ink-700)]">
               Chapitre validé
             </h3>
@@ -181,7 +181,7 @@ export default function ChapterClient({
               <button
                 type="button"
                 onClick={() => setShowSuccessModal(false)}
-                className="rounded-full border border-black/10 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ink-700)] transition hover:-translate-y-0.5"
+                className="rounded-full border border-[color:var(--line)] bg-[color:var(--elevated)] px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ink-700)] transition hover:-translate-y-0.5"
               >
                 Fermer
               </button>
