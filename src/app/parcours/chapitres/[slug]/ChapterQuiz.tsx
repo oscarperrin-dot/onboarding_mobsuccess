@@ -40,7 +40,11 @@ export default function ChapterQuiz({
                   retryQuestionIndexes.includes(index);
                 const disabled = selected !== undefined || !canRetryThisQuestion;
                 const isCorrect = optionIndex === quiz.correctIndex;
-                const showCorrect = showResults && isSelected && isCorrect;
+                const showCorrect =
+                  showResults &&
+                  isSelected &&
+                  isCorrect &&
+                  !retryQuestionIndexes.includes(index);
                 return (
                   <button
                     key={option}

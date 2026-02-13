@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import type { Chapter } from "../../chapters";
+import type { Chapter, ChapterQuiz as ChapterQuizType } from "../../chapters";
 import { XP_PER_CORRECT } from "../../chapters";
 import ChapterQuiz from "./ChapterQuiz";
 
@@ -11,6 +11,21 @@ type ChapterClientProps = {
   chapter: Chapter;
   nextChapterSlug: string | null;
 };
+
+function shuffleQuestionOptions(quiz: ChapterQuizType): ChapterQuizType {
+  const indexedOptions = quiz.options.map((option, index) => ({ option, index }));
+
+  for (let i = indexedOptions.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indexedOptions[i], indexedOptions[j]] = [indexedOptions[j], indexedOptions[i]];
+  }
+
+  return {
+    ...quiz,
+    options: indexedOptions.map(({ option }) => option),
+    correctIndex: indexedOptions.findIndex(({ index }) => index === quiz.correctIndex),
+  };
+}
 
 export default function ChapterClient({
   chapter,
@@ -23,14 +38,18 @@ export default function ChapterClient({
   const [retryQuestionIndexes, setRetryQuestionIndexes] = useState<number[]>([]);
   const [feedback, setFeedback] = useState<string>("");
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const randomizedQuiz = useMemo(
+    () => chapter.quiz.map((quiz) => shuffleQuestionOptions(quiz)),
+    [chapter.quiz]
+  );
 
   const score = useMemo(() => {
-    const total = chapter.quiz.length;
-    const correct = chapter.quiz.reduce((acc, quiz, index) => {
+    const total = randomizedQuiz.length;
+    const correct = randomizedQuiz.reduce((acc, quiz, index) => {
       return acc + (answers[index] === quiz.correctIndex ? 1 : 0);
     }, 0);
     return { correct, total };
-  }, [answers, chapter.quiz]);
+  }, [answers, randomizedQuiz]);
 
   return (
     <>
@@ -49,11 +68,11 @@ export default function ChapterClient({
             </p>
           </div>
           <span className="rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-[0.3em] text-[color:var(--ink-500)]">
-            {chapter.quiz.length} questions
+            {randomizedQuiz.length} questions
           </span>
         </div>
         <ChapterQuiz
-          questions={chapter.quiz}
+          questions={randomizedQuiz}
           answers={answers}
           onAnswer={(questionIndex, optionIndex) =>
             setAnswers((prev) => ({ ...prev, [questionIndex]: optionIndex }))
@@ -81,7 +100,7 @@ export default function ChapterClient({
           <button
             type="button"
             onClick={() => {
-              const wrongIndexes = chapter.quiz
+              const wrongIndexes = randomizedQuiz
                 .map((quiz, index) => ({ quiz, index }))
                 .filter(({ quiz, index }) => answers[index] !== quiz.correctIndex)
                 .map(({ index }) => index);
