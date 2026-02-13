@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f1ec;
+  --foreground: #121212;
+  --ink-700: #2d2a24;
+  --ink-500: #514a40;
+  --accent-1: #ff8c5a;
+  --accent-2: #f6c453;
+  --accent-3: #3e8cb6;
+  --card: #fff7ef;
+  --card-strong: #f2e6da;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-body);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0b0d10;
+    --foreground: #f8f4ee;
+    --ink-700: #e6dccf;
+    --ink-500: #b7aa9a;
+    --accent-1: #ff8c5a;
+    --accent-2: #f6c453;
+    --accent-3: #58a7d4;
+    --card: #141922;
+    --card-strong: #1c2532;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-30%);
+  }
+  100% {
+    transform: translateX(30%);
+  }
+}
+
+.animate-pop {
+  animation: pop-in 0.45s ease-out both;
+}
+
+.animate-shimmer {
+  animation: shimmer 2.4s ease-in-out infinite alternate;
+}
