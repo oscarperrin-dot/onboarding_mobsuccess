@@ -32,7 +32,6 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
       ? chapters[chapterIndex + 1].slug
       : null;
   const chapterNumber = chapterIndex + 1;
-  const summaryPoints = [...chapter.highlights, ...chapter.onboardingImpact].slice(0, 6);
 
   const importantTerms = [
     "MobSuccess",
@@ -121,6 +120,8 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
       </div>
     );
   }
+
+  const summaryPoints = [...chapter.highlights, ...chapter.onboardingImpact].slice(0, 6);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,_#fff5e6_0%,_#f4f1ec_55%,_#e8e2d8_100%)] px-4 py-6 text-[var(--ink-700)] sm:px-6 sm:py-10">
